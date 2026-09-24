@@ -100,6 +100,9 @@ install(FILES
 install(DIRECTORY ../share/
   DESTINATION share/${PROJECT_NAME}/config
   FILES_MATCHING PATTERN "*.json")
+install(DIRECTORY ../share/schemas/
+  DESTINATION share/${PROJECT_NAME}/schemas
+  FILES_MATCHING PATTERN "*.json")
 install(DIRECTORY launch/
   DESTINATION share/${PROJECT_NAME}/launch)
 
