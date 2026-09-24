@@ -16,8 +16,6 @@
   <exec_depend>ament_index_python</exec_depend>
   <exec_depend>launch</exec_depend>
   <exec_depend>launch_ros</exec_depend>
-  <exec_depend>dvrk_robot</exec_depend>
-  <exec_depend>dvrk_isaac_sim</exec_depend>
 
   <export>
     <build_type>ament_cmake</build_type>
