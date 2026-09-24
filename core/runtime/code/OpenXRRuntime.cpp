@@ -25,6 +25,8 @@
 
 namespace {
 
+constexpr auto kVideoReconnectDelay = std::chrono::seconds(5);
+
 void xr_check(XrResult result, const char *expression) {
   if (XR_FAILED(result)) {
     throw std::runtime_error(std::string(expression) +
@@ -507,7 +509,7 @@ private:
     stop_test_source();
     video_format_checked_ = false;
     next_video_retry_ =
-        std::chrono::steady_clock::now() + std::chrono::seconds(1);
+        std::chrono::steady_clock::now() + kVideoReconnectDelay;
   }
 
   void wait_for_initial_video_frame() {
@@ -517,7 +519,7 @@ private:
           std::chrono::steady_clock::now() >= next_video_retry_) {
         if (!start_test_source()) {
           next_video_retry_ =
-              std::chrono::steady_clock::now() + std::chrono::seconds(1);
+              std::chrono::steady_clock::now() + kVideoReconnectDelay;
         }
       }
       if (test_pipeline_ != nullptr && !check_stream_bus()) {
@@ -1253,7 +1255,7 @@ private:
       if (std::chrono::steady_clock::now() < next_video_retry_ ||
           !start_test_source()) {
         next_video_retry_ =
-            std::chrono::steady_clock::now() + std::chrono::seconds(1);
+            std::chrono::steady_clock::now() + kVideoReconnectDelay;
         return false;
       }
     }

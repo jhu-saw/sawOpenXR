@@ -152,7 +152,7 @@ void mtsOpenXR::ConfigureInterfaces(void) {
                                   "thumbsticks", std::string());
 
   const std::array<std::string, 2> local_clutch_names{{
-      "Console/clutch/MTML_PSM2", "Console/clutch/MTMR_PSM1"}};
+      "Console/clutch/MTML", "Console/clutch/MTMR"}};
   for (size_t index = 0; index < local_clutch_names.size(); ++index) {
     mtsInterfaceProvided *provided = AddInterfaceProvided(local_clutch_names[index]);
     if (!provided) {
