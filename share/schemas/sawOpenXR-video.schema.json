@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sawOpenXR-video.schema.json",
+  "title": "sawOpenXR video configuration",
+  "type": "object",
+  "required": ["name", "video"],
+  "properties": {
+    "name": {"type": "string", "minLength": 1},
+    "video": {
+      "type": "object",
+      "required": ["type", "gst_input"],
+      "properties": {
+        "type": {"enum": ["mono", "side-by-side"]},
+        "gst_input": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}
