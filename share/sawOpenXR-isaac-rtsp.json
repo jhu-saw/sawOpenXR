@@ -1,5 +1,4 @@
 {
-  "name": "OpenXR",
   "video": {
     "type": "side-by-side",
     "gst_input": "rtspsrc location=rtsp://127.0.0.1:8554/ECM/stereo protocols=udp latency=0 drop-on-latency=true add-reference-timestamp-meta=true ! rtph264depay wait-for-keyframe=true ! h264parse ! nvh264dec ! queue name=quest_video_queue max-size-buffers=1 max-size-bytes=0 max-size-time=0 leaky=downstream"

@@ -24,19 +24,7 @@ class CISST_EXPORT mtsOpenXR : public mtsTaskContinuous {
   CMN_DECLARE_SERVICES(CMN_DYNAMIC_CREATION_ONEARG, CMN_LOG_ALLOW_DEFAULT);
 
 public:
-  struct ControllerSample {
-    bool session_focused = false;
-    bool tracked = false;
-    double thumbstick_x = 0.0;
-    double thumbstick_y = 0.0;
-    bool thumbstick_click = false;
-    bool front_trigger_active = false;
-    double front_trigger = 0.0;
-    bool window_move_pressed = false;
-    std::array<double, 3> position{};
-    std::array<double, 4> orientation{{0.0, 0.0, 0.0, 1.0}};
-    double timestamp = 0.0;
-  };
+  using ControllerSample = sawOpenXR::ControllerState;
 
   mtsOpenXR(const std::string &component_name);
   mtsOpenXR(const mtsTaskContinuousConstructorArg &argument);

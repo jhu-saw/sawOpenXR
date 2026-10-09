@@ -155,10 +155,12 @@ ros2 launch saw_openxr isaac_patient_cart_rtsp.launch.py
 The launch file runs `dvrk_robot dvrk_system` with the installed
 `system-MTML-MTMR-OpenXR-patient-cart-ROS.json`. That system file loads the
 `sawOpenXR` plugin and its `config/sawOpenXR-isaac-rtsp.json` configuration.
-It starts `dvrk_isaac_sim` with `ECM_PSM1_PSM2_PSM3_stereo.yaml` first and
-waits 15 seconds before launching `dvrk_system`. Override the scene or delay,
-for example, with `isaac_scene:=ECM_PSM1_PSM2_PSM3_mono.yaml` or
-`dvrk_system_delay:=30.0`.
+It starts the Isaac simulator frontend and `dvrk_system` together. ROS startup
+waits for simulator state and the video source retries RTSP connections. Override
+the scene with `isaac_scene:=ECM_PSM1_PSM2_PSM3_mono.yaml`. Runtime settings use
+`isaac_config`; select the Isaac interpreter with `DVRK_ISAAC_SIM_PYTHON` or
+`ISAAC_SIM_DIR`. The obsolete fixed startup delay and `isaac_sim_dir` launch
+argument have been removed.
 
 `mtsOpenXR` owns the OpenXR, Vulkan, and GStreamer runtime. Each OpenXR frame
 updates the two controller grip poses and input actions. The cisst task loop

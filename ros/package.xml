@@ -19,6 +19,8 @@
   <exec_depend>dvrk_robot</exec_depend>
   <exec_depend>dvrk_isaac_sim</exec_depend>
 
+  <exec_depend>dvrk_simulator_base</exec_depend>
+
   <export>
     <build_type>ament_cmake</build_type>
   </export>

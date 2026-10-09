@@ -271,27 +271,7 @@ void mtsOpenXR::StopOpenXRRuntime(void) {
 
 void mtsOpenXR::HandleOpenXRControllers(
     const std::array<sawOpenXR::ControllerState, 2> &controllers) {
-  ControllerSample left;
-  ControllerSample right;
-  const std::array<ControllerSample *, 2> samples{{&left, &right}};
-
-  for (size_t hand_index = 0; hand_index < samples.size(); ++hand_index) {
-    const auto &controller = controllers[hand_index];
-    auto &sample = *samples[hand_index];
-    sample.tracked = controller.tracked;
-    sample.session_focused = controller.session_focused;
-    sample.thumbstick_x = controller.thumbstick_x;
-    sample.thumbstick_y = controller.thumbstick_y;
-    sample.thumbstick_click = controller.thumbstick_click;
-    sample.front_trigger_active = controller.front_trigger_active;
-    sample.front_trigger = controller.front_trigger;
-    sample.window_move_pressed = controller.window_move_pressed;
-    sample.position = controller.position;
-    sample.orientation = controller.orientation;
-    sample.timestamp = controller.timestamp;
-  }
-
-  UpdateControllerSamples(left, right);
+  UpdateControllerSamples(controllers[0], controllers[1]);
 }
 
 void mtsOpenXR::HandleOpenXRError(const std::string &reason) {
