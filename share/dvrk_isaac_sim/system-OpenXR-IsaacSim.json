@@ -1,0 +1,40 @@
+{
+  "$id": "dvrk-system.schema.json",
+  "$version": "1",
+  "component_manager": {
+    "components": [
+      {"shared-library": "sawOpenXR", "class-name": "mtsOpenXR", "constructor-arg": {"Name": "OpenXR"}, "configure-parameter": "sawOpenXR-isaac-rtsp.json"},
+      {"shared-library": "dvrk_arm_from_ros", "class-name": "dvrk_psm_from_ros", "constructor-arg": {"Name": "PSM1", "Period": 0.01}},
+      {"shared-library": "dvrk_arm_from_ros", "class-name": "dvrk_psm_from_ros", "constructor-arg": {"Name": "PSM2", "Period": 0.01}},
+      {"shared-library": "dvrk_arm_from_ros", "class-name": "dvrk_psm_from_ros", "constructor-arg": {"Name": "PSM3", "Period": 0.01}},
+      {"shared-library": "dvrk_arm_from_ros", "class-name": "dvrk_arm_from_ros", "constructor-arg": {"Name": "ECM", "Period": 0.01}}
+    ]
+  },
+  "arms": [
+    {"name": "MTML", "type": "MTM_GENERIC", "component": "OpenXR", "interface": "MTML"},
+    {"name": "MTMR", "type": "MTM_GENERIC", "component": "OpenXR", "interface": "MTMR"},
+    {"name": "PSM1", "type": "PSM_GENERIC", "component": "PSM1", "interface": "PSM1", "skip_ROS_bridge": true},
+    {"name": "PSM2", "type": "PSM_GENERIC", "component": "PSM2", "interface": "PSM2", "skip_ROS_bridge": true},
+    {"name": "PSM3", "type": "PSM_GENERIC", "component": "PSM3", "interface": "PSM3", "skip_ROS_bridge": true},
+    {"name": "ECM", "type": "ECM_GENERIC", "component": "ECM", "interface": "ECM", "skip_ROS_bridge": true}
+  ],
+  "consoles": [
+    {
+      "name": "console",
+      "input_type": "COMPONENTS",
+      "operator_present": {"component": "OpenXR", "interface": "Console/operator_present"},
+      "clutch": {"component": "OpenXR", "interface": "Console/clutch"},
+      "camera": {"component": "OpenXR", "interface": "Console/camera"},
+      "teleop_PSMs": [
+        {"MTM": "MTMR", "PSM": "PSM1", "clutch": {"component": "OpenXR", "interface": "Console/clutch/MTMR"}, "configure_parameter": {"MTM_is_haptic": false, "align_MTM": false, "use_MTM_linear_velocity": false, "use_MTM_angular_velocity": false, "ignore_jaw": false, "start_gripper_threshold": 0.0, "scale": 0.4}},
+        {"MTM": "MTML", "PSM": "PSM2", "clutch": {"component": "OpenXR", "interface": "Console/clutch/MTML"}, "configure_parameter": {"MTM_is_haptic": false, "align_MTM": false, "use_MTM_linear_velocity": false, "use_MTM_angular_velocity": false, "ignore_jaw": false, "start_gripper_threshold": 0.0, "scale": 0.4}},
+        {"MTM": "MTML", "PSM": "PSM3", "clutch": {"component": "OpenXR", "interface": "Console/clutch/MTML"}, "configure_parameter": {"MTM_is_haptic": false, "align_MTM": false, "use_MTM_linear_velocity": false, "use_MTM_angular_velocity": false, "ignore_jaw": false, "start_gripper_threshold": 0.0, "scale": 0.4}}
+      ],
+      "teleop_ECMs": [
+        {"MTML": "MTML", "MTMR": "MTMR", "ECM": "ECM", "configure_parameter": {"MTM_is_haptic": false, "check_MTMs_workspace": false, "haptic_feedback_ratio": 0.0}},
+        {"MTM": "MTML", "ECM": "ECM", "configure_parameter": {"MTM_is_haptic": false}},
+        {"MTM": "MTMR", "ECM": "ECM", "configure_parameter": {"MTM_is_haptic": false}}
+      ]
+    }
+  ]
+}
