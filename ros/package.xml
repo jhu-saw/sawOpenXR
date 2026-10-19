@@ -8,6 +8,7 @@
   <license>BSD-3-Clause</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
+  <depend>cisst</depend>
   <build_depend>pkg-config</build_depend>
   <build_depend>libgstreamer1.0-dev</build_depend>
   <build_depend>libgstreamer-plugins-base1.0-dev</build_depend>
