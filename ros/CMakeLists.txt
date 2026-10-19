@@ -98,11 +98,15 @@ install(FILES
   "${SAW_OPENXR_FRAGMENT_SHADER}"
   DESTINATION share/${PROJECT_NAME}/shaders)
 install(DIRECTORY ../share/
+  DESTINATION share/${PROJECT_NAME}
+  PATTERN "launch" EXCLUDE
+  PATTERN "*.launch.py" EXCLUDE
+  PATTERN "*.pyc" EXCLUDE)
+install(DIRECTORY ../share/
   DESTINATION share/${PROJECT_NAME}/config
-  FILES_MATCHING PATTERN "*.json")
-install(DIRECTORY ../share/schemas/
-  DESTINATION share/${PROJECT_NAME}/schemas
-  FILES_MATCHING PATTERN "*.json")
+  PATTERN "launch" EXCLUDE
+  PATTERN "*.launch.py" EXCLUDE
+  PATTERN "*.pyc" EXCLUDE)
 install(DIRECTORY launch/
   DESTINATION share/${PROJECT_NAME}/launch)
 

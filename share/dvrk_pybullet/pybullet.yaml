@@ -1,0 +1,30 @@
+# Backend settings for the rigid OpenXR patient-cart example.
+# EGL provides GPU camera rendering even without the desktop GUI.
+renderer: egl
+headless: true
+simulation_rate_hz: 120.0
+state_publish_rate_hz: 100.0
+command_queue_capacity: 32
+grasp:
+  show_grasps: true
+  max_grasps_per_object: 0  # 0 means unlimited PSM grasps per object
+  policy: force_torque
+  # Override individual PSMs when comparing policies, e.g.:
+  # arms:
+  #   PSM1:
+  #     policy: pose_error
+  close_threshold_rad: 0.04       # about 2.3 deg
+  release_threshold_rad: 0.08     # about 4.6 deg
+  break_distance_m: 0.02          # 20 mm
+  break_orientation_rad: 0.349066 # 20 deg
+  break_tension_force_n: 50.0     # N
+  break_shear_force_n: 50.0       # N
+  break_torque_nm: 1.0            # N m
+  break_load_duration_s: 0.05     # 50 ms above a load threshold
+  max_force_n: 100.0              # N
+  constraint_erp: 0.8
+  # Tool-local -Z is proximal, toward the wrist-yaw joint (3 mm).
+  contact_region_offset_m: [0.0, 0.0, -0.003]
+  contact_region_radius_m: 0.008  # 8 mm
+generated_root: null
+scene: null

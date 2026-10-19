@@ -1,0 +1,6 @@
+# Backend settings for the OpenXR patient-cart scene.
+renderer: RaytracedLighting
+headless: true
+simulation_rate_hz: 120.0
+render_rate_hz: 30.0
+scene: null

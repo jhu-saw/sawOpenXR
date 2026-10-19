@@ -1,0 +1,17 @@
+# Backend settings for the OpenXR patient-cart example in NVIDIA Newton.
+command_queue_capacity: 32
+grasp:
+  max_grasps_per_object: 0  # 0 means unlimited PSM grasps per object
+  close_threshold_rad: 0.04       # about 2.3 deg
+  release_threshold_rad: 0.08     # about 4.6 deg
+  break_distance_m: 0.01          # 10 mm
+  break_orientation_rad: 0.523599 # 30 deg
+  contact_region_offset_m: [0.0, 0.0, -0.003]
+  contact_region_radius_m: 0.005  # 5 mm jaw-contact qualification radius
+device: cuda:0
+generated_root: null
+headless: false
+rigid_gap_m: 0.005
+scene: null
+simulation_rate_hz: 120.0
+state_publish_rate_hz: 100.0

@@ -1,0 +1,11 @@
+{
+  "type": "dvrk_console:stereo_display@1.0.0",
+  "name": "newton_openxr_overlay",
+  "dvrk_console_namespace": "console",
+  "overlay_alpha": 0.7,
+  "gst_input": "unixfdsrc socket-path=dvrk:simulator:stereo_source socket-type=abstract do-timestamp=true ! video/x-raw,format=RGBA",
+  "gst_output": "@dvrk:console:stereo_overlay",
+  "eye_size": "auto",
+  "display_horizontal_offset_px": -50,
+  "sinks": []
+}
